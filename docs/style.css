@@ -1,37 +1,61 @@
-/* Global Styles */
-body {
+/* Define CSS Variables with your provided colors and font stack */
+:root {
+  --socket-font: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --socket-bg: #5b646b;
+  --socket-bg2: #454e57;
+  --socket-primary: #ffffff;
+  --socket-secondary: #efbb20;
+  --socket-color: #ffffff;
+  --socket-meta: #e1e1e1;
+  --socket-heading: #ffffff;
+  --socket-border: #5b646b;
+  --socket-constant-font: #5b646b;
+  --socket-button-border: #dddddd;
+  --socket-button-border2: #cd9900;
+  --socket-iconlist: #4a535a;
+  --socket-timeline: #4a535a;
+  --socket-timeline-date: #172027;
+  --socket-masonry: #343d46;
+  --socket-stripe: #ffffff;
+  --socket-stripe2: #ffffff;
+  --socket-stripe2nd: #ffcc31;
+  --socket-button-font: #5b646b;
+}
+
+/* Reset */
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--socket-font);
+  background: var(--socket-bg);
+  color: var(--socket-primary);
   position: relative;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* Bubble Animation Background */
+/* BUBBLE ANIMATION BACKGROUND */
 .bubble-wrapper {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  /* Cool gradient background */
+  /* (Keep the original gradient for the bubbles) */
   background: linear-gradient(180deg, #04fafd 5%, #119dff 50%, #030423);
   z-index: -1;
   overflow: hidden;
 }
 
-/* Optional: Hide header text inside bubble animation */
-.bubble-wrapper h1 {
-  display: none;
-}
-
-/* Bubble container & dot styling */
 .bubble-wrapper div {
   height: 60px;
   width: 60px;
   border: 2px solid rgba(255, 255, 255, 0.7);
-  border-radius: 50px;
+  border-radius: 50%;
   position: absolute;
   animation: animate 4s linear infinite;
 }
@@ -46,7 +70,7 @@ body {
   right: 20%;
 }
 
-/* Positioning & animation durations for each bubble */
+/* Positioning and animation durations for each bubble */
 .bubble-wrapper div:nth-child(1) {
   top: 20%;
   left: 20%;
@@ -134,77 +158,104 @@ body {
   }
 }
 
-/* Main Content Styles */
-.container {
-  max-width: 960px;
-  z-index: 1;
+/* MAIN CONTENT LAYER (above the bubbles) */
+.content {
   position: relative;
+  z-index: 1;
 }
 
-/* Card Styles */
+/* CARD STYLES */
 .card {
-  border-radius: 8px;
+  background-color: var(--socket-bg2);
+  color: var(--socket-primary);
   border: none;
+  border-radius: 8px;
   overflow: hidden;
 }
 
 .card-header {
-  background: linear-gradient(135deg, #66a6ff, #89f7fe);
-  color: #fff;
+  background-color: var(--socket-secondary);
   padding: 1.5rem;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .card-title {
-  font-weight: 700;
+  font-weight: bold;
   font-size: 1.75rem;
+  color: var(--socket-heading);
 }
 
-/* Form Elements */
+/* FORM ELEMENTS */
 .form-label {
+  color: var(--socket-primary);
   font-weight: 500;
 }
 
-/* Button Styles */
+.form-control, 
+.form-select {
+  background-color: var(--socket-bg);
+  color: var(--socket-primary);
+  border: 1px solid var(--socket-border);
+}
+
+.form-control:focus, 
+.form-select:focus {
+  box-shadow: 0 0 5px var(--socket-secondary);
+  border-color: var(--socket-secondary);
+}
+
+/* BUTTON STYLES */
 .btn-primary {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  background-color: var(--socket-secondary);
+  border-color: var(--socket-button-border2);
+  color: var(--socket-primary);
+  font-weight: bold;
 }
 
 .btn-primary:hover {
-  background-color: #004494;
-  border-color: #004494;
+  background-color: var(--socket-secondary);
+  opacity: 0.9;
 }
 
-/* Table Styles */
+/* ESTIMATION RESULT TABLE */
+#result h2 {
+  color: var(--socket-primary);
+}
+
 #result table {
   margin-top: 20px;
+  color: var(--socket-primary);
 }
 
-table th,
-table td {
-  vertical-align: middle;
+#result th, 
+#result td {
   text-align: center;
+  vertical-align: middle;
+  border-color: var(--socket-border);
 }
 
-/* Footer Styles */
+/* Optionally override Bootstrap’s table header */
+.table-primary {
+  background-color: var(--socket-bg) !important;
+  color: var(--socket-primary) !important;
+}
+
+/* FOOTER STYLES */
 .footer {
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #ffffff;
+  background-color: var(--socket-bg);
+  color: var(--socket-primary);
 }
 
 .footer h5 {
-  font-weight: 700;
-  margin-bottom: 1rem;
+  font-weight: bold;
+  color: var(--socket-heading);
 }
 
 .footer p {
-  margin-bottom: 1rem;
+  color: var(--socket-meta);
 }
 
-/* Responsive Adjustments */
+/* RESPONSIVE ADJUSTMENTS */
 @media (max-width: 576px) {
   .card-title {
     font-size: 1.5rem;
