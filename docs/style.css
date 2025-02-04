@@ -147,6 +147,15 @@ body {
   transform: translateY(-3px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+.nav-icon {
+  width: 40px;  /* Adjust size as needed */
+  height: auto;
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav-icon:hover {
+  transform: scale(1.1);
+}
 
 /*--------------------------------------------------
   MAIN CONTENT & COMPONENT STYLES
