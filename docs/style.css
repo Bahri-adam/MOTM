@@ -56,7 +56,7 @@ body {
   right: 0;
   height: 100%;
   margin: auto;
-  width: 90vw;
+  width: 100vw;
   pointer-events: none;
   z-index: -1;
   /* Gradient from grey to yellow (using our variables) */
@@ -196,10 +196,14 @@ body {
   color: var(--socket-primary) !important;
 }
 
-/* FOOTER STYLES */
+/*--------------------------------------------------
+  FOOTER & CONTACT SECTION Styles
+--------------------------------------------------*/
 .footer {
-  background-color: var(--socket-bg);
+  background-color: transparent; /* Remove opaque background so the lines show through */
+  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Optional subtle border for separation */
   color: var(--socket-primary);
+  padding: 1.5rem 0; /* Adjust padding as needed */
 }
 
 .footer h5 {
