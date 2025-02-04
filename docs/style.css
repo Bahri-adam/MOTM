@@ -159,7 +159,7 @@ body {
 .form-select {
   background-color: #3a4047; /* A slightly lighter dark shade for inputs */
   border: 1px solid var(--socket-border);
-  color: var(--socket-primary);
+  color: var(--socket-secondary);
   padding: 0.5rem;
   border-radius: 4px;
   transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
@@ -182,14 +182,14 @@ body {
 /* Button styling */
 .btn-primary {
   background-color: var(--socket-secondary);
-  border-color: var(--socket-border);
-  color: var(--socket-bg2);
+  border-color: var(--socket-primary);
+  color: var(--socket-secondary);
   transition: background-color 0.3s;
 }
 
 .btn-primary:hover {
   background-color: #d4a20c; /* A slightly darker shade on hover */
-  border-color: var(--socket-border);
+  border-color: var(--socket-primary);
 }
 
 /*--------------------------------------------------
@@ -197,12 +197,12 @@ body {
 --------------------------------------------------*/
 .footer {
   background-color: transparent;
-  color: var(--socket-primary);
+  color: transparent;
   padding-top: 1rem;
 }
 
 .footer h5 {
-  color: var(--socket-primary);
+  color: transparent;
 }
 
 .footer a {
