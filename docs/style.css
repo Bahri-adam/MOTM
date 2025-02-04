@@ -42,7 +42,6 @@ body {
   color: var(--socket-primary);
   line-height: 1.6;
   position: relative;
-  /* Allow scrolling if content exceeds viewport */
   overflow-x: hidden;
 }
 
@@ -111,16 +110,53 @@ body {
 }
 
 /*--------------------------------------------------
-  Main Content & Component Styles
+  NAVIGATION HEADER STYLES
+--------------------------------------------------*/
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--socket-bg2);
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+.nav-btn {
+  display: inline-block;
+  margin: 0 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--socket-secondary);
+  color: var(--socket-primary);
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/*--------------------------------------------------
+  MAIN CONTENT & COMPONENT STYLES
 --------------------------------------------------*/
 
-/* Ensure the content appears above the background */
+/* Ensure the content appears above the background and below the header */
 .content {
   position: relative;
   z-index: 1;
+  margin-top: 70px; /* Space for fixed header */
 }
 
-/* CARD STYLES */
 .card {
   background-color: var(--socket-bg2);
   color: var(--socket-primary);
@@ -141,7 +177,6 @@ body {
   color: var(--socket-heading);
 }
 
-/* FORM ELEMENTS */
 .form-label {
   color: var(--socket-primary);
   font-weight: 500;
@@ -160,7 +195,6 @@ body {
   border-color: var(--socket-secondary);
 }
 
-/* BUTTON STYLES */
 .btn-primary {
   background-color: var(--socket-secondary);
   border-color: var(--socket-button-border2);
@@ -173,7 +207,6 @@ body {
   opacity: 0.9;
 }
 
-/* ESTIMATION RESULT TABLE */
 #result h2 {
   color: var(--socket-primary);
 }
@@ -200,19 +233,20 @@ body {
   FOOTER & CONTACT SECTION Styles
 --------------------------------------------------*/
 .footer {
-  background-color: transparent; /* Remove opaque background so the lines show through */
-  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Optional subtle border for separation */
+  background-color: transparent; /* Allow the animated background to show through */
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   color: var(--socket-primary);
-  padding: 1.5rem 0; /* Adjust padding as needed */
+  padding: 1.5rem 0;
 }
 
 .footer h5 {
   font-weight: bold;
-  color: var(--socket-heading);
+  color: var(--socket-primary);
 }
 
 .footer p {
-  color: var(--socket-meta);
+  color: var(--socket-primary);
+  font-weight: bold;
 }
 
 /* RESPONSIVE ADJUSTMENTS */
