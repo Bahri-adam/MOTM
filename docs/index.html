@@ -3,64 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <title>Moving Box & Packing Supplies Estimator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <h1>Moving Box & Packing Supplies Estimator</h1>
-  <form id="estimator-form">
-    <label for="propertyType">Property Type:</label>
-    <select id="propertyType" name="propertyType">
-      <option value="apartment">Apartment</option>
-      <option value="house">House</option>
-    </select>
-    <br>
-    
-    <!-- Apartment-specific fields -->
-    <div id="apartment-fields">
-      <label for="bedroomsApartment">Number of Bedrooms (Apartment):</label>
-      <input type="number" id="bedroomsApartment" name="bedrooms" min="1" value="1">
-      <br>
+<body class="bg-light">
+  <div class="container my-5">
+    <div class="card shadow">
+      <div class="card-header bg-primary text-white">
+        <h1 class="card-title text-center mb-0">Moving Box & Packing Supplies Estimator</h1>
+      </div>
+      <div class="card-body">
+        <form id="estimator-form">
+          <div class="mb-3">
+            <label for="propertyType" class="form-label">Property Type</label>
+            <select class="form-select" id="propertyType" name="propertyType">
+              <option value="apartment">Apartment</option>
+              <option value="house">House</option>
+            </select>
+          </div>
+          <!-- Apartment Fields -->
+          <div id="apartment-fields" class="mb-3">
+            <label for="bedroomsApartment" class="form-label">Number of Bedrooms (Apartment)</label>
+            <input type="number" class="form-control" id="bedroomsApartment" name="bedrooms" min="1" value="1">
+          </div>
+          <!-- House Fields -->
+          <div id="house-fields" class="mb-3" style="display: none;">
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <input type="text" class="form-control" id="address" name="address" placeholder="Enter your address">
+            </div>
+            <div class="mb-3">
+              <label for="squareFootage" class="form-label">Square Footage (if known)</label>
+              <input type="number" class="form-control" id="squareFootage" name="squareFootage" min="0">
+            </div>
+            <div class="mb-3">
+              <label for="bedroomsHouse" class="form-label">Number of Bedrooms (House)</label>
+              <input type="number" class="form-control" id="bedroomsHouse" name="bedrooms" min="1" value="1">
+            </div>
+            <div class="mb-3">
+              <label for="yearsLived" class="form-label">Years Lived in Home</label>
+              <input type="number" class="form-control" id="yearsLived" name="yearsLived" min="0" value="0">
+            </div>
+            <div class="mb-3">
+              <label for="belongings" class="form-label">How would you describe your belongings?</label>
+              <select class="form-select" id="belongings" name="belongings">
+                <option value="average">Average</option>
+                <option value="a_lot">I have a lot</option>
+                <option value="a_little">I have a little</option>
+              </select>
+            </div>
+          </div>
+          
+          <h2 class="h5 mt-4">Additional Packing Supplies (Optional)</h2>
+          <div class="mb-3">
+            <label for="extraPictureBoxes" class="form-label">Picture Boxes (each $2)</label>
+            <input type="number" class="form-control" id="extraPictureBoxes" name="extraPictureBoxes" min="0" value="0">
+          </div>
+          <div class="mb-3">
+            <label for="extraBubbleWrap" class="form-label">Bubble Wrap (feet, $2 per foot)</label>
+            <input type="number" class="form-control" id="extraBubbleWrap" name="extraBubbleWrap" min="0" value="0">
+          </div>
+          <div class="mb-3">
+            <label for="extraMattressCovers" class="form-label">Mattress Covers (each $10)</label>
+            <input type="number" class="form-control" id="extraMattressCovers" name="extraMattressCovers" min="0" value="0">
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg">Estimate Moving Supplies</button>
+          </div>
+        </form>
+      </div>
     </div>
-    
-    <!-- House-specific fields -->
-    <div id="house-fields" style="display: none;">
-      <label for="address">Address:</label>
-      <input type="text" id="address" name="address" placeholder="Enter your address">
-      <br>
-      <label for="squareFootage">Square Footage (if known):</label>
-      <input type="number" id="squareFootage" name="squareFootage" min="0">
-      <br>
-      <label for="bedroomsHouse">Number of Bedrooms (House):</label>
-      <input type="number" id="bedroomsHouse" name="bedrooms" min="1" value="1">
-      <br>
-      <label for="yearsLived">Years Lived in Home:</label>
-      <input type="number" id="yearsLived" name="yearsLived" min="0" value="0">
-      <br>
-      <label for="belongings">How would you describe your belongings?</label>
-      <select id="belongings" name="belongings">
-        <option value="average">Average</option>
-        <option value="a_lot">I have a lot</option>
-        <option value="a_little">I have a little</option>
-      </select>
-      <br>
-    </div>
-    
-    <h2>Additional Packing Supplies (Optional)</h2>
-    <label for="extraPictureBoxes">Picture Boxes (each $2):</label>
-    <input type="number" id="extraPictureBoxes" name="extraPictureBoxes" min="0" value="0">
-    <br>
-    <label for="extraBubbleWrap">Bubble Wrap (feet, $2 per foot):</label>
-    <input type="number" id="extraBubbleWrap" name="extraBubbleWrap" min="0" value="0">
-    <br>
-    <label for="extraMattressCovers">Mattress Covers (each $10):</label>
-    <input type="number" id="extraMattressCovers" name="extraMattressCovers" min="0" value="0">
-    <br>
-    
-    <button type="submit">Estimate Moving Supplies</button>
-  </form>
+    <div id="result" class="mt-5"></div>
+  </div>
   
-  <div id="result"></div>
-  
+  <!-- Bootstrap JS Bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
   <script src="app.js"></script>
 </body>
 </html>
