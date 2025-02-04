@@ -1,34 +1,20 @@
 /*--------------------------------------------------
-  CSS Variables & Base Styles
+  CSS VARIABLES & BASE STYLES
 --------------------------------------------------*/
 :root {
   --socket-font: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --socket-bg: #5b646b;             /* Grey */
-  --socket-bg2: #454e57;
-  --socket-primary: #ffffff;
+  --socket-bg: #5b646b;             /* Grey for gradients and header backgrounds */
+  --socket-bg2: #454e57;            /* Dark Grey for cards and form backgrounds */
+  --socket-primary: #ffffff;        /* White text */
   --socket-secondary: #efbb20;      /* Yellow/Gold */
-  --socket-color: #ffffff;
-  --socket-meta: #e1e1e1;
-  --socket-heading: #ffffff;
   --socket-border: #5b646b;
-  --socket-constant-font: #5b646b;
-  --socket-button-border: #dddddd;
-  --socket-button-border2: #cd9900;
-  --socket-iconlist: #4a535a;
-  --socket-timeline: #4a535a;
-  --socket-timeline-date: #172027;
-  --socket-masonry: #343d46;
-  --socket-stripe: #ffffff;
-  --socket-stripe2: #ffffff;
-  --socket-stripe2nd: #ffcc31;
-  --socket-button-font: #5b646b;
 }
 
 /* Reset */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box !important;
+  box-sizing: border-box;
 }
 
 html, body {
@@ -46,7 +32,7 @@ body {
 }
 
 /*--------------------------------------------------
-  LINES BACKGROUND Animation
+  LINES BACKGROUND ANIMATION
 --------------------------------------------------*/
 .lines {
   position: fixed;
@@ -55,7 +41,6 @@ body {
   right: 0;
   height: 100%;
   width: 100vw;
-  margin: auto;
   pointer-events: none;
   z-index: -1;
   background: linear-gradient(180deg, var(--socket-bg) 0%, var(--socket-secondary) 100%);
@@ -108,14 +93,14 @@ body {
 }
 
 /*--------------------------------------------------
-  NAVIGATION HEADER STYLES
+  FIXED TRANSPARENT NAVIGATION HEADER
 --------------------------------------------------*/
 .main-header {
-  position: fixed; /* Fixed to top */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  background: transparent; /* Transparent background */
+  right: 0;
+  background: transparent;
   padding: 0.5rem 0;
   z-index: 10;
 }
@@ -128,9 +113,7 @@ body {
 
 .nav-btn {
   margin: 0 1rem;
-  color: var(--socket-primary) !important;
-  background: transparent;
-  border: none;
+  color: var(--socket-primary);
   text-decoration: none;
   font-size: 1.2rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -147,10 +130,10 @@ body {
 .content {
   position: relative;
   z-index: 1;
-  margin-top: 70px; /* Space to prevent overlap with fixed header */
+  margin-top: 70px; /* Push content below the fixed header */
 }
 
-/* Optional: Adjust card styling for dark background */
+/* Card styling to match dark theme */
 .card {
   background-color: var(--socket-bg2) !important;
   color: var(--socket-primary) !important;
@@ -160,4 +143,45 @@ body {
 .card-header {
   background-color: var(--socket-bg) !important;
   border-bottom: 1px solid var(--socket-border);
+}
+
+/* Override form controls to match the theme */
+.form-control,
+.form-select {
+  background-color: var(--socket-bg2);
+  border: 1px solid var(--socket-border);
+  color: var(--socket-primary);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: var(--socket-bg2);
+  border-color: var(--socket-secondary);
+  box-shadow: none;
+}
+
+/* Button styling */
+.btn-primary {
+  background-color: var(--socket-secondary);
+  border-color: var(--socket-border);
+  color: var(--socket-bg2);
+}
+
+.btn-primary:hover {
+  background-color: #d4a20c; /* Slightly darker shade */
+  border-color: var(--socket-border);
+}
+
+/*--------------------------------------------------
+  FOOTER STYLES
+--------------------------------------------------*/
+.footer {
+  background-color: var(--socket-bg);
+  color: var(--socket-primary);
+}
+.footer h5 {
+  color: var(--socket-primary);
+}
+.footer a {
+  color: var(--socket-secondary);
 }
