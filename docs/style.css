@@ -4,7 +4,7 @@
 :root {
   --socket-font: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --socket-bg: #5b646b;             /* Grey for gradients & header backgrounds */
-  --socket-bg2: #454e57;            /* Dark grey for card backgrounds */
+  --socket-bg2: #454e57;            /* Dark grey (base for card) */
   --socket-primary: #ffffff;        /* White text */
   --socket-secondary: #efbb20;      /* Yellow/Gold accent */
   --socket-border: #5b646b;
@@ -133,16 +133,23 @@ body {
   margin-top: 70px; /* Ensure content sits below the fixed header */
 }
 
-/* Card styling to match dark theme */
+/* Card styling: smaller, centered & semi-transparent */
 .card {
-  background-color: var(--socket-bg2) !important;
+  max-width: 600px;
+  margin: auto;
+  background-color: rgba(69, 78, 87, 0.8) !important;
   color: var(--socket-primary) !important;
   border: 1px solid var(--socket-border);
 }
 
 .card-header {
-  background-color: var(--socket-bg) !important;
+  background-color: rgba(91, 100, 107, 0.8) !important;
   border-bottom: 1px solid var(--socket-border);
+}
+
+/* Optionally reduce the title font size */
+.card-title {
+  font-size: 1.5rem;
 }
 
 /*--------------------------------------------------
@@ -155,7 +162,7 @@ body {
   color: var(--socket-primary);
   padding: 0.5rem;
   border-radius: 4px;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 
 .form-control::placeholder,
@@ -163,9 +170,11 @@ body {
   color: #bbb; /* Light gray for placeholders */
 }
 
+/* On focus, inputs turn white with dark text */
 .form-control:focus,
 .form-select:focus {
-  background-color: #3a4047;
+  background-color: #fff;
+  color: #171717;
   border-color: var(--socket-secondary);
   box-shadow: 0 0 8px rgba(239, 187, 32, 0.5);
 }
@@ -184,10 +193,10 @@ body {
 }
 
 /*--------------------------------------------------
-  FOOTER STYLES
+  FOOTER STYLES (Transparent Footer)
 --------------------------------------------------*/
 .footer {
-  background-color: var(--socket-bg);
+  background-color: transparent;
   color: var(--socket-primary);
   padding-top: 1rem;
 }
