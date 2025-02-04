@@ -129,22 +129,25 @@ body {
   padding: 0.5rem 1rem;
 }
 
+/* Updated nav-btn styling to remove default link styles and add button-like appearance */
 .nav-btn {
   display: inline-block;
   margin: 0 1rem;
-  padding: 0.5rem 1rem;
-  background-color: var(--socket-secondary);
-  color: var(--socket-primary);
-  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--socket-secondary) !important;
+  color: var(--socket-primary) !important;
+  text-decoration: none !important;  /* Remove the blue underline */
   font-weight: bold;
   border-radius: 4px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
 }
 
 .nav-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
 
 /*--------------------------------------------------
   MAIN CONTENT & COMPONENT STYLES
@@ -232,21 +235,19 @@ body {
 /*--------------------------------------------------
   FOOTER & CONTACT SECTION Styles
 --------------------------------------------------*/
+/* Set footer background to transparent so the animated lines show through */
 .footer {
-  background-color: transparent; /* Allow the animated background to show through */
+  background-color: transparent;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   color: var(--socket-primary);
   padding: 1.5rem 0;
 }
 
-.footer h5 {
-  font-weight: bold;
-  color: var(--socket-primary);
-}
-
+/* Ensure all footer text is bold white */
+.footer h5,
 .footer p {
-  color: var(--socket-primary);
-  font-weight: bold;
+  color: #ffffff !important;
+  font-weight: bold !important;
 }
 
 /* RESPONSIVE ADJUSTMENTS */
