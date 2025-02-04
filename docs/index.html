@@ -10,14 +10,23 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- LINES BACKGROUND (Animated) -->
+  <!-- NAVIGATION HEADER -->
+  <header class="main-header">
+    <nav class="navbar">
+      <a href="https://www.a2movers.com/" class="nav-btn">Home</a>
+      <a href="https://www.a2movers.com/contact-requestquote/" class="nav-btn">Get a Quote</a>
+      <a href="https://www.yelp.com/biz/men-on-the-move-ann-arbor-3" class="nav-btn" target="_blank">Yelp</a>
+    </nav>
+  </header>
+  
+  <!-- LINES BACKGROUND Animation -->
   <div class="lines">
     <div class="line"></div>
     <div class="line"></div>
     <div class="line"></div>
   </div>
   
-  <!-- MAIN CONTENT (Above the animated lines) -->
+  <!-- MAIN CONTENT (pushed down to avoid the fixed header) -->
   <div class="container my-5 content">
     <div class="card shadow">
       <div class="card-header">
@@ -25,6 +34,7 @@
       </div>
       <div class="card-body">
         <form id="estimator-form">
+          <!-- Your form fields go here -->
           <div class="mb-3">
             <label for="propertyType" class="form-label">Property Type</label>
             <select class="form-select" id="propertyType" name="propertyType">
