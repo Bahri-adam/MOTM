@@ -3,10 +3,10 @@
 --------------------------------------------------*/
 :root {
   --socket-font: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --socket-bg: #5b646b;             /* Grey for gradients and header backgrounds */
-  --socket-bg2: #454e57;            /* Dark Grey for cards and form backgrounds */
+  --socket-bg: #5b646b;             /* Grey for gradients & header backgrounds */
+  --socket-bg2: #454e57;            /* Dark grey for card backgrounds */
   --socket-primary: #ffffff;        /* White text */
-  --socket-secondary: #efbb20;      /* Yellow/Gold */
+  --socket-secondary: #efbb20;      /* Yellow/Gold accent */
   --socket-border: #5b646b;
 }
 
@@ -121,7 +121,7 @@ body {
 
 .nav-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /*--------------------------------------------------
@@ -130,7 +130,7 @@ body {
 .content {
   position: relative;
   z-index: 1;
-  margin-top: 70px; /* Push content below the fixed header */
+  margin-top: 70px; /* Ensure content sits below the fixed header */
 }
 
 /* Card styling to match dark theme */
@@ -145,19 +145,29 @@ body {
   border-bottom: 1px solid var(--socket-border);
 }
 
-/* Override form controls to match the theme */
+/*--------------------------------------------------
+  FORM CONTROL STYLES (Improved for interactivity)
+--------------------------------------------------*/
 .form-control,
 .form-select {
-  background-color: var(--socket-bg2);
+  background-color: #3a4047; /* A slightly lighter dark shade for inputs */
   border: 1px solid var(--socket-border);
   color: var(--socket-primary);
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control::placeholder,
+.form-select::placeholder {
+  color: #bbb; /* Light gray for placeholders */
 }
 
 .form-control:focus,
 .form-select:focus {
-  background-color: var(--socket-bg2);
+  background-color: #3a4047;
   border-color: var(--socket-secondary);
-  box-shadow: none;
+  box-shadow: 0 0 8px rgba(239, 187, 32, 0.5);
 }
 
 /* Button styling */
@@ -165,10 +175,11 @@ body {
   background-color: var(--socket-secondary);
   border-color: var(--socket-border);
   color: var(--socket-bg2);
+  transition: background-color 0.3s;
 }
 
 .btn-primary:hover {
-  background-color: #d4a20c; /* Slightly darker shade */
+  background-color: #d4a20c; /* A slightly darker shade on hover */
   border-color: var(--socket-border);
 }
 
@@ -178,10 +189,13 @@ body {
 .footer {
   background-color: var(--socket-bg);
   color: var(--socket-primary);
+  padding-top: 1rem;
 }
+
 .footer h5 {
   color: var(--socket-primary);
 }
+
 .footer a {
   color: var(--socket-secondary);
 }
