@@ -1,35 +1,26 @@
 /* docs/style.css */
 body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  max-width: 800px;
+  background-color: #f8f9fa;
+}
+
+.card {
+  border-radius: 10px;
+}
+
+.card-header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 h1, h2 {
-  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-label {
-  display: block;
-  margin-top: 10px;
-}
-
-input, select {
-  margin-bottom: 10px;
-  padding: 5px;
-  font-size: 14px;
-}
-
-button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-#result {
+#result table {
   margin-top: 20px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  background-color: #f9f9f9;
+}
+
+table th, table td {
+  vertical-align: middle;
+  text-align: center;
 }
