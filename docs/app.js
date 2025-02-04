@@ -1,12 +1,24 @@
 // docs/app.js
 document.addEventListener('DOMContentLoaded', function() {
+  // Box information: cost and dimensions (sourced from our research)
+  const boxInfo = {
+    book: { name: "Book Box", cost: 2.50, dimensions: "12¾ x 12¾ x 16.5" },
+    medium: { name: "Medium Box", cost: 3.50, dimensions: "18 x 18 x 16" },
+    large: { name: "Large Box", cost: 4.50, dimensions: "18 x 18 x 24" },
+    dish: { name: "Dish Pack Box", cost: 7.00, dimensions: "18 x 18 x 28" },
+    tape: { name: "Roll of Tape", cost: 3.00, dimensions: "N/A" },
+    picture: { name: "Picture Box", cost: 2.00, dimensions: "N/A" },
+    bubbleWrap: { name: "Bubble Wrap (per foot)", cost: 2.00, dimensions: "N/A" },
+    mattressCover: { name: "Mattress Cover", cost: 10.00, dimensions: "Fits standard mattresses" }
+  };
+
   const propertyTypeSelect = document.getElementById('propertyType');
   const apartmentFields = document.getElementById('apartment-fields');
   const houseFields = document.getElementById('house-fields');
   const form = document.getElementById('estimator-form');
   const resultDiv = document.getElementById('result');
   
-  // Toggle display of fields based on property type
+  // Toggle display of fields based on the selected property type
   propertyTypeSelect.addEventListener('change', function() {
     if (propertyTypeSelect.value === 'apartment') {
       apartmentFields.style.display = 'block';
@@ -17,10 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  // Calculation functions
+  // Calculation for apartments:
+  // For a 1-bedroom apartment we assume:
+  // • 10 Book Boxes, 10 Medium Boxes, 5 Large Boxes, 3 Dish Pack Boxes, and 3 Rolls of Tape.
+  // For additional bedrooms, we use a scale factor: 1 + 0.5*(bedrooms-1)
   function calculateApartmentBoxes(bedrooms) {
-    // For a 1-bedroom apartment: 10 book, 10 medium, 5 large, 3 dish boxes, and 3 rolls of tape.
-    // For additional bedrooms, we use a 1.5x scale factor per extra bedroom.
     const scale = bedrooms > 1 ? 1 + (bedrooms - 1) * 0.5 : 1;
     return {
       book: Math.round(10 * scale),
@@ -31,17 +44,19 @@ document.addEventListener('DOMContentLoaded', function() {
     };
   }
   
+  // Calculation for houses:
+  // We start with a base of 30 boxes for a 1-bedroom home and add 20 for each extra bedroom.
+  // If the occupants have lived in the home for more than 5 years, add 10% per extra year.
+  // Then distribute the total boxes using ratios (10/28 for book, 10/28 for medium, 5/28 for large, 3/28 for dish,
+  // with tape approximated as 3/28).
   function calculateHouseBoxes(bedrooms, yearsLived, belongingsFactor) {
-    // Base estimate: 1 bedroom = 30 boxes, plus 20 boxes for each additional bedroom.
     const baseBoxes = 30 + (bedrooms - 1) * 20;
-    // If lived > 5 years, add 10% per extra year.
     let yearFactor = 1;
     if (yearsLived > 5) {
       yearFactor = 1 + 0.1 * (yearsLived - 5);
     }
     const totalBoxes = Math.round(baseBoxes * yearFactor * belongingsFactor);
     
-    // Distribute boxes into types using approximate ratios (based on a 1-bedroom apartment's ratios)
     const ratioBook = 10 / 28;
     const ratioMedium = 10 / 28;
     const ratioLarge = 5 / 28;
@@ -52,37 +67,22 @@ document.addEventListener('DOMContentLoaded', function() {
       medium: Math.round(totalBoxes * ratioMedium),
       large: Math.round(totalBoxes * ratioLarge),
       dish: Math.round(totalBoxes * ratioDish),
-      tape: Math.round(totalBoxes * (3 / 28)) // approximate tape quantity
+      tape: Math.round(totalBoxes * (3 / 28))
     };
   }
   
+  // Calculate total cost based on the quantities and the boxInfo prices.
   function calculateCosts(items) {
-    // Prices for each item:
-    const prices = {
-      book: 2.50,
-      medium: 3.50,
-      large: 4.50,
-      dish: 7.00,
-      tape: 3.00,
-      picture: 2.00,
-      bubbleWrap: 2.00,
-      mattressCover: 10.00
-    };
-    
     let cost = 0;
-    cost += (items.book || 0) * prices.book;
-    cost += (items.medium || 0) * prices.medium;
-    cost += (items.large || 0) * prices.large;
-    cost += (items.dish || 0) * prices.dish;
-    cost += (items.tape || 0) * prices.tape;
-    cost += (items.picture || 0) * prices.picture;
-    cost += (items.bubbleWrap || 0) * prices.bubbleWrap;
-    cost += (items.mattressCover || 0) * prices.mattressCover;
-    
+    for (const key in items) {
+      if (boxInfo.hasOwnProperty(key)) {
+        cost += (items[key] || 0) * boxInfo[key].cost;
+      }
+    }
     return cost;
   }
   
-  // Form submission event
+  // Form submission event: Gather inputs, perform calculations, and display results.
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -92,6 +92,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (propertyType === 'apartment') {
       const bedrooms = parseInt(document.getElementById('bedroomsApartment').value) || 1;
       items = calculateApartmentBoxes(bedrooms);
+      // Automatically include one mattress cover per bedroom.
+      items.mattressCover = bedrooms;
     } else if (propertyType === 'house') {
       const bedrooms = parseInt(document.getElementById('bedroomsHouse').value) || 1;
       const yearsLived = parseInt(document.getElementById('yearsLived').value) || 0;
@@ -103,30 +105,50 @@ document.addEventListener('DOMContentLoaded', function() {
         belongingsFactor = 0.75;
       }
       items = calculateHouseBoxes(bedrooms, yearsLived, belongingsFactor);
+      // Automatically include one mattress cover per bedroom.
+      items.mattressCover = bedrooms;
     }
     
-    // Add additional optional supplies from the form
+    // Optional supplies: extra Picture Boxes, Bubble Wrap, and extra Mattress Covers.
     const extraPictureBoxes = parseInt(document.getElementById('extraPictureBoxes').value) || 0;
     const extraBubbleWrap = parseInt(document.getElementById('extraBubbleWrap').value) || 0;
     const extraMattressCovers = parseInt(document.getElementById('extraMattressCovers').value) || 0;
+    
     items.picture = extraPictureBoxes;
     items.bubbleWrap = extraBubbleWrap;
-    items.mattressCover = extraMattressCovers;
+    // Add any extra mattress covers on top of the base required covers.
+    items.mattressCover = (items.mattressCover || 0) + extraMattressCovers;
     
     const totalCost = calculateCosts(items);
     
     displayResult(items, totalCost);
   });
   
-  // Display the results in the UI
+  // Display the results in a detailed table showing each item's breakdown.
   function displayResult(items, totalCost) {
     let html = '<h2>Estimation Result</h2>';
-    html += '<ul>';
-    for (const key in items) {
-      html += `<li>${key}: ${items[key]}</li>`;
-    }
-    html += '</ul>';
-    html += `<p><strong>Total Cost:</strong> $${totalCost.toFixed(2)}</p>`;
+    html += '<table>';
+    html += '<tr><th>Item</th><th>Quantity</th><th>Cost per Unit</th><th>Total Cost</th><th>Dimensions</th></tr>';
+    
+    // Order in which items appear in the table.
+    const order = ['book', 'medium', 'large', 'dish', 'tape', 'picture', 'bubbleWrap', 'mattressCover'];
+    
+    order.forEach(key => {
+      if (items[key] && items[key] > 0) {
+        const quantity = items[key];
+        const unitCost = boxInfo[key].cost;
+        const itemTotalCost = quantity * unitCost;
+        html += `<tr>
+                   <td>${boxInfo[key].name}</td>
+                   <td>${quantity}</td>
+                   <td>$${unitCost.toFixed(2)}</td>
+                   <td>$${itemTotalCost.toFixed(2)}</td>
+                   <td>${boxInfo[key].dimensions}</td>
+                 </tr>`;
+      }
+    });
+    html += '</table>';
+    html += `<p><strong>Total Estimated Cost:</strong> $${totalCost.toFixed(2)}</p>`;
     resultDiv.innerHTML = html;
   }
 });
