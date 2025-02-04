@@ -1,26 +1,79 @@
-/* docs/style.css */
+/* style.css */
+
+/* Global Styles */
 body {
   background-color: #f8f9fa;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
+.container {
+  max-width: 960px;
+}
+
+/* Card Styles */
 .card {
-  border-radius: 10px;
+  border-radius: 8px;
+  border: none;
 }
 
 .card-header {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding: 1.5rem;
 }
 
-h1, h2 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.card-title {
+  font-weight: 700;
+  font-size: 1.75rem;
 }
 
+/* Form Elements */
+.form-label {
+  font-weight: 500;
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn-primary:hover {
+  background-color: #004494;
+  border-color: #004494;
+}
+
+/* Table Styles */
 #result table {
   margin-top: 20px;
 }
 
-table th, table td {
+table th,
+table td {
   vertical-align: middle;
   text-align: center;
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #343a40;
+  color: #ffffff;
+}
+
+.footer h5 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.footer p {
+  margin-bottom: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+  .card-title {
+    font-size: 1.5rem;
+  }
 }
