@@ -19,6 +19,7 @@
 
 html, body {
   height: 100%;
+  min-height: 120vh; /* Increase page height */
 }
 
 /* Body styling */
@@ -32,67 +33,6 @@ body {
 }
 
 /*--------------------------------------------------
-  LINES BACKGROUND ANIMATION
---------------------------------------------------*/
-.lines {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100vw;
-  pointer-events: none;
-  z-index: -1;
-  background: linear-gradient(180deg, var(--socket-bg) 0%, var(--socket-secondary) 100%);
-}
-
-.line {
-  position: absolute;
-  width: 1px;
-  height: 100%;
-  top: 0;
-  left: 50%;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.line::after {
-  content: '';
-  display: block;
-  position: absolute;
-  height: 15vh;
-  width: 100%;
-  top: -50%;
-  left: 0;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
-  animation: drop 7s 0s infinite;
-  animation-fill-mode: forwards;
-  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-}
-
-.line:nth-child(1) {
-  margin-left: -25%;
-}
-.line:nth-child(1)::after {
-  animation-delay: 2s;
-}
-
-.line:nth-child(3) {
-  margin-left: 25%;
-}
-.line:nth-child(3)::after {
-  animation-delay: 2.5s;
-}
-
-@keyframes drop {
-  0% {
-    top: -50%;
-  }
-  100% {
-    top: 110%;
-  }
-}
-
-/*--------------------------------------------------
   FIXED TRANSPARENT NAVIGATION HEADER
 --------------------------------------------------*/
 .main-header {
@@ -100,9 +40,9 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.7); /* Slight transparency for visibility */
   padding: 0.5rem 0;
-  z-index: 10;
+  z-index: 1000;
 }
 
 .navbar {
@@ -125,86 +65,16 @@ body {
 }
 
 /*--------------------------------------------------
-  MAIN CONTENT & COMPONENT STYLES
---------------------------------------------------*/
-.content {
-  position: relative;
-  z-index: 1;
-  margin-top: 70px; /* Ensure content sits below the fixed header */
-}
-
-/* Card styling: smaller, centered & semi-transparent */
-.card {
-  max-width: 600px;
-  margin: auto;
-  background-color: rgba(69, 78, 87, 0.8) !important;
-  color: var(--socket-primary) !important;
-  border: 1px solid var(--socket-border);
-}
-
-.card-header {
-  background-color: rgba(91, 100, 107, 0.8) !important;
-  border-bottom: 1px solid var(--socket-border);
-}
-
-/* Optionally reduce the title font size */
-.card-title {
-  font-size: 1.5rem;
-}
-
-/*--------------------------------------------------
-  FORM CONTROL STYLES (Improved for interactivity)
---------------------------------------------------*/
-.form-control,
-.form-select {
-  background-color: #3a4047; /* A slightly lighter dark shade for inputs */
-  border: 1px solid var(--socket-border);
-  color: var(--socket-secondary);
-  padding: 0.5rem;
-  border-radius: 4px;
-  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
-}
-
-.form-control::placeholder,
-.form-select::placeholder {
-  color: #bbb; /* Light gray for placeholders */
-}
-
-/* On focus, inputs turn white with dark text */
-.form-control:focus,
-.form-select:focus {
-  background-color: #fff;
-  color: #171717;
-  border-color: var(--socket-secondary);
-  box-shadow: 0 0 8px rgba(239, 187, 32, 0.5);
-}
-
-/* Button styling */
-.btn-primary {
-  background-color: var(--socket-secondary);
-  border-color: var(--socket-primary);
-  color: var(--socket-secondary);
-  transition: background-color 0.3s;
-}
-
-.btn-primary:hover {
-  background-color: #d4a20c; /* A slightly darker shade on hover */
-  border-color: var(--socket-primary);
-}
-
-/*--------------------------------------------------
-  FOOTER STYLES (Transparent Footer)
+  FOOTER STYLES (Fully Transparent)
 --------------------------------------------------*/
 .footer {
-  background-color: transparent;
-  color: transparent;
+  background: transparent !important;
+  color: var(--socket-primary) !important;
   padding-top: 1rem;
+  position: relative;
+  z-index: 10;
 }
 
-.footer h5 {
-  color: transparent;
-}
-
-.footer a {
-  color: var(--socket-secondary);
+.footer h5, .footer p, .footer a {
+  color: var(--socket-primary) !important;
 }
