@@ -4,8 +4,8 @@
 :root {
   --socket-font: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --socket-bg: #5b646b;             /* Grey */
-  --socket-bg2: #454e57;
-  --socket-primary: #ffffff;
+  --socket-bg2: #454e57;            /* Dark Grey */
+  --socket-primary: #ffffff;        /* White */
   --socket-secondary: #efbb20;      /* Yellow/Gold */
   --socket-color: #ffffff;
   --socket-meta: #e1e1e1;
@@ -54,11 +54,10 @@ body {
   left: 0;
   right: 0;
   height: 100%;
-  margin: auto;
   width: 100vw;
   pointer-events: none;
   z-index: -1;
-  /* Gradient from grey to yellow (using our variables) */
+  /* Gradient from grey to yellow */
   background: linear-gradient(180deg, var(--socket-bg) 0%, var(--socket-secondary) 100%);
 }
 
@@ -80,6 +79,7 @@ body {
   width: 100%;
   top: -50%;
   left: 0;
+  /* A gentle white-to-pale-yellow gradient */
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffe8b5 100%);
   animation: drop 5s 0s infinite;
   animation-fill-mode: forwards;
@@ -129,14 +129,14 @@ body {
   padding: 0.5rem 1rem;
 }
 
-/* Updated nav-btn styling to remove default link styles and add button-like appearance */
+/* Updated nav-btn styling for a button-like appearance */
 .nav-btn {
   display: inline-block;
   margin: 0 1rem;
   padding: 0.75rem 1.5rem;
-  background-color:  transparent;
+  background-color: transparent;
   color: var(--socket-primary) !important;
-  text-decoration: none !important;  /* Remove the blue underline */
+  text-decoration: none !important;
   font-weight: bold;
   border-radius: 4px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -148,12 +148,9 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-
 /*--------------------------------------------------
   MAIN CONTENT & COMPONENT STYLES
 --------------------------------------------------*/
-
-/* Ensure the content appears above the background and below the header */
 .content {
   position: relative;
   z-index: 1;
@@ -235,7 +232,7 @@ body {
 /*--------------------------------------------------
   FOOTER & CONTACT SECTION Styles
 --------------------------------------------------*/
-/* Set footer background to transparent so the animated lines show through */
+/* Transparent footer so the animated lines show through */
 .footer {
   background-color: transparent;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -243,14 +240,15 @@ body {
   padding: 1.5rem 0;
 }
 
-/* Ensure all footer text is bold white */
 .footer h5,
 .footer p {
   color: #ffffff !important;
   font-weight: bold !important;
 }
 
-/* RESPONSIVE ADJUSTMENTS */
+/*--------------------------------------------------
+  RESPONSIVE ADJUSTMENTS
+--------------------------------------------------*/
 @media (max-width: 576px) {
   .card-title {
     font-size: 1.5rem;
