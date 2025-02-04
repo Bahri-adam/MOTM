@@ -54,11 +54,10 @@ body {
   left: 0;
   right: 0;
   height: 100%;
-  margin: auto;
   width: 100vw;
+  margin: auto;
   pointer-events: none;
   z-index: -1;
-  /* Gradient from grey to yellow (using our variables) */
   background: linear-gradient(180deg, var(--socket-bg) 0%, var(--socket-secondary) 100%);
 }
 
@@ -69,7 +68,6 @@ body {
   top: 0;
   left: 50%;
   background: rgba(255, 255, 255, 0.1);
-  overflow: hidden;
 }
 
 .line::after {
@@ -113,9 +111,11 @@ body {
   NAVIGATION HEADER STYLES
 --------------------------------------------------*/
 .main-header {
-  position: fixed; /* Normal flow so header scrolls with the page */
+  position: fixed; /* Fixed to top */
+  top: 0;
+  left: 0;
   width: 100%;
-  background: transparent;
+  background: transparent; /* Transparent background */
   padding: 0.5rem 0;
   z-index: 10;
 }
@@ -132,7 +132,7 @@ body {
   background: transparent;
   border: none;
   text-decoration: none;
-  font-size: 1.5rem; /* Adjust for desired icon size */
+  font-size: 1.2rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -144,8 +144,20 @@ body {
 /*--------------------------------------------------
   MAIN CONTENT & COMPONENT STYLES
 --------------------------------------------------*/
-/* Ensure the content appears above the background and below the header */
 .content {
   position: relative;
   z-index: 1;
-  margin-top: 70px; 
+  margin-top: 70px; /* Space to prevent overlap with fixed header */
+}
+
+/* Optional: Adjust card styling for dark background */
+.card {
+  background-color: var(--socket-bg2) !important;
+  color: var(--socket-primary) !important;
+  border: 1px solid var(--socket-border);
+}
+
+.card-header {
+  background-color: var(--socket-bg) !important;
+  border-bottom: 1px solid var(--socket-border);
+}
