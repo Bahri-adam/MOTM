@@ -1,10 +1,10 @@
 /* Define CSS Variables with your provided colors and font stack */
 :root {
   --socket-font: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --socket-bg: #5b646b;
+  --socket-bg: #5b646b;             /* grey */
   --socket-bg2: #454e57;
   --socket-primary: #ffffff;
-  --socket-secondary: #efbb20;
+  --socket-secondary: #efbb20;      /* yellow/gold */
   --socket-color: #ffffff;
   --socket-meta: #e1e1e1;
   --socket-heading: #ffffff;
@@ -44,11 +44,13 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  /* (Keep the original gradient for the bubbles) */
-  background: linear-gradient(180deg, #04fafd 5%, #119dff 50%, #030423);
+  height: 100vh; /* ensure it covers the viewport only */
+  background: linear-gradient(180deg, var(--socket-bg) 0%, var(--socket-secondary) 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
   z-index: -1;
   overflow: hidden;
+  pointer-events: none; /* so it doesn’t capture any mouse events */
 }
 
 .bubble-wrapper div {
