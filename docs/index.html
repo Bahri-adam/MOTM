@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- NAVIGATION HEADER (Fixed to the top, transparent) -->
+  <!-- FIXED, TRANSPARENT NAVIGATION HEADER -->
   <header class="main-header">
     <nav class="navbar">
       <a href="https://www.a2movers.com/" class="nav-btn" title="Home">Home</a>
@@ -19,23 +19,22 @@
     </nav>
   </header>
   
-  <!-- LINES BACKGROUND Animation -->
+  <!-- LINES BACKGROUND ANIMATION -->
   <div class="lines">
     <div class="line"></div>
     <div class="line"></div>
     <div class="line"></div>
-    <!-- Additional lines can be added here if desired -->
   </div>
   
-  <!-- MAIN CONTENT (Pushed down to avoid header overlap) -->
+  <!-- MAIN CONTENT (PUSHED DOWN BELOW THE HEADER) -->
   <div class="container my-5 content">
     <div class="card shadow">
       <div class="card-header">
-        <h1 class="card-title text-center mb-0">Moving Box & Packing Supplies Estimator</h1>
+        <h1 class="card-title text-center mb-0">Moving Box &amp; Packing Supplies Estimator</h1>
       </div>
       <div class="card-body">
         <form id="estimator-form">
-          <!-- Form Fields -->
+          <!-- Property Type Field -->
           <div class="mb-3">
             <label for="propertyType" class="form-label">Property Type</label>
             <select class="form-select" id="propertyType" name="propertyType">
@@ -46,7 +45,7 @@
           <!-- Apartment Fields -->
           <div id="apartment-fields" class="mb-3">
             <label for="bedroomsApartment" class="form-label">Number of Bedrooms (Apartment)</label>
-            <input type="number" class="form-control" id="bedroomsApartment" name="bedrooms" min="1" value="1">
+            <input type="number" class="form-control" id="bedroomsApartment" name="bedrooms" min="1" value="1" placeholder="e.g., 2">
           </div>
           <!-- House Fields -->
           <div id="house-fields" class="mb-3" style="display: none;">
@@ -56,15 +55,15 @@
             </div>
             <div class="mb-3">
               <label for="squareFootage" class="form-label">Square Footage (if known)</label>
-              <input type="number" class="form-control" id="squareFootage" name="squareFootage" min="0">
+              <input type="number" class="form-control" id="squareFootage" name="squareFootage" min="0" placeholder="e.g., 1500">
             </div>
             <div class="mb-3">
               <label for="bedroomsHouse" class="form-label">Number of Bedrooms (House)</label>
-              <input type="number" class="form-control" id="bedroomsHouse" name="bedrooms" min="1" value="1">
+              <input type="number" class="form-control" id="bedroomsHouse" name="bedrooms" min="1" value="1" placeholder="e.g., 3">
             </div>
             <div class="mb-3">
               <label for="yearsLived" class="form-label">Years Lived in Home</label>
-              <input type="number" class="form-control" id="yearsLived" name="yearsLived" min="0" value="0">
+              <input type="number" class="form-control" id="yearsLived" name="yearsLived" min="0" value="0" placeholder="e.g., 5">
             </div>
             <div class="mb-3">
               <label for="belongings" class="form-label">How would you describe your belongings?</label>
@@ -76,18 +75,19 @@
             </div>
           </div>
           
+          <!-- Additional Packing Supplies -->
           <h2 class="h5 mt-4">Additional Packing Supplies (Optional)</h2>
           <div class="mb-3">
             <label for="extraPictureBoxes" class="form-label">Picture Boxes (each $2)</label>
-            <input type="number" class="form-control" id="extraPictureBoxes" name="extraPictureBoxes" min="0" value="0">
+            <input type="number" class="form-control" id="extraPictureBoxes" name="extraPictureBoxes" min="0" value="0" placeholder="0">
           </div>
           <div class="mb-3">
             <label for="extraBubbleWrap" class="form-label">Bubble Wrap (feet, $2 per foot)</label>
-            <input type="number" class="form-control" id="extraBubbleWrap" name="extraBubbleWrap" min="0" value="0">
+            <input type="number" class="form-control" id="extraBubbleWrap" name="extraBubbleWrap" min="0" value="0" placeholder="0">
           </div>
           <div class="mb-3">
             <label for="extraMattressCovers" class="form-label">Mattress Covers (each $10)</label>
-            <input type="number" class="form-control" id="extraMattressCovers" name="extraMattressCovers" min="0" value="0">
+            <input type="number" class="form-control" id="extraMattressCovers" name="extraMattressCovers" min="0" value="0" placeholder="0">
           </div>
           <div class="d-grid">
             <button type="submit" class="btn btn-primary btn-lg">Estimate Moving Supplies</button>
@@ -96,7 +96,7 @@
       </div>
     </div>
     
-    <!-- ESTIMATION RESULT -->
+    <!-- ESTIMATION RESULT AREA -->
     <div id="result" class="mt-5"></div>
   </div>
   
@@ -129,7 +129,20 @@
   
   <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Custom JS (Estimator logic) -->
-  <script src="app.js"></script>
+  <!-- Inline Script for Form Interactivity -->
+  <script>
+    // Toggle extra fields based on property type
+    document.getElementById("propertyType").addEventListener("change", function() {
+      var apartmentFields = document.getElementById("apartment-fields");
+      var houseFields = document.getElementById("house-fields");
+      if (this.value === "house") {
+        apartmentFields.style.display = "none";
+        houseFields.style.display = "block";
+      } else {
+        houseFields.style.display = "none";
+        apartmentFields.style.display = "block";
+      }
+    });
+  </script>
 </body>
 </html>
