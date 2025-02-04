@@ -1,10 +1,12 @@
-/* Define CSS Variables with your provided colors and font stack */
+/*--------------------------------------------------
+  CSS Variables & Base Styles
+--------------------------------------------------*/
 :root {
   --socket-font: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --socket-bg: #5b646b;             /* grey */
+  --socket-bg: #5b646b;             /* Grey */
   --socket-bg2: #454e57;
   --socket-primary: #ffffff;
-  --socket-secondary: #efbb20;      /* yellow/gold */
+  --socket-secondary: #efbb20;      /* Yellow/Gold */
   --socket-color: #ffffff;
   --socket-meta: #e1e1e1;
   --socket-heading: #ffffff;
@@ -26,141 +28,93 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
+html, body {
+  height: 100%;
+}
+
+/* Body styling */
 body {
   font-family: var(--socket-font);
-  background: var(--socket-bg);
+  background-color: #171717; /* Dark background */
   color: var(--socket-primary);
+  line-height: 1.6;
   position: relative;
-  min-height: 100vh;
+  /* Allow scrolling if content exceeds viewport */
   overflow-x: hidden;
 }
 
-/* BUBBLE ANIMATION BACKGROUND */
-.bubble-wrapper {
+/*--------------------------------------------------
+  LINES BACKGROUND Animation
+--------------------------------------------------*/
+.lines {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100vh; /* ensure it covers the viewport only */
-  background: linear-gradient(180deg, var(--socket-bg) 0%, var(--socket-secondary) 100%);
-  background-repeat: no-repeat;
-  background-size: cover;
+  right: 0;
+  height: 100%;
+  margin: auto;
+  width: 90vw;
+  pointer-events: none;
   z-index: -1;
-  overflow: hidden;
-  pointer-events: none; /* so it doesn’t capture any mouse events */
+  /* Gradient from grey to yellow (using our variables) */
+  background: linear-gradient(180deg, var(--socket-bg) 0%, var(--socket-secondary) 100%);
 }
 
-.bubble-wrapper div {
-  height: 60px;
-  width: 60px;
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  border-radius: 50%;
+.line {
   position: absolute;
-  animation: animate 4s linear infinite;
-}
-
-.bubble-wrapper div .dot {
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  position: absolute;
-  top: 20%;
-  right: 20%;
-}
-
-/* Positioning and animation durations for each bubble */
-.bubble-wrapper div:nth-child(1) {
-  top: 20%;
-  left: 20%;
-  animation: animate 8s linear infinite;
-}
-.bubble-wrapper div:nth-child(2) {
-  top: 60%;
-  left: 80%;
-  animation: animate 10s linear infinite;
-}
-.bubble-wrapper div:nth-child(3) {
-  top: 40%;
-  left: 40%;
-  animation: animate 3s linear infinite;
-}
-.bubble-wrapper div:nth-child(4) {
-  top: 66%;
-  left: 30%;
-  animation: animate 7s linear infinite;
-}
-.bubble-wrapper div:nth-child(5) {
-  top: 90%;
-  left: 10%;
-  animation: animate 9s linear infinite;
-}
-.bubble-wrapper div:nth-child(6) {
-  top: 30%;
-  left: 60%;
-  animation: animate 5s linear infinite;
-}
-.bubble-wrapper div:nth-child(7) {
-  top: 70%;
-  left: 20%;
-  animation: animate 8s linear infinite;
-}
-.bubble-wrapper div:nth-child(8) {
-  top: 75%;
-  left: 60%;
-  animation: animate 10s linear infinite;
-}
-.bubble-wrapper div:nth-child(9) {
-  top: 50%;
+  width: 1px;
+  height: 100%;
+  top: 0;
   left: 50%;
-  animation: animate 6s linear infinite;
-}
-.bubble-wrapper div:nth-child(10) {
-  top: 45%;
-  left: 20%;
-  animation: animate 10s linear infinite;
-}
-.bubble-wrapper div:nth-child(11) {
-  top: 10%;
-  left: 90%;
-  animation: animate 9s linear infinite;
-}
-.bubble-wrapper div:nth-child(12) {
-  top: 20%;
-  left: 70%;
-  animation: animate 7s linear infinite;
-}
-.bubble-wrapper div:nth-child(13) {
-  top: 20%;
-  left: 20%;
-  animation: animate 8s linear infinite;
-}
-.bubble-wrapper div:nth-child(14) {
-  top: 60%;
-  left: 5%;
-  animation: animate 6s linear infinite;
-}
-.bubble-wrapper div:nth-child(15) {
-  top: 90%;
-  left: 80%;
-  animation: animate 9s linear infinite;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
 }
 
-@keyframes animate {
+.line::after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+  animation: drop 7s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+}
+
+.line:nth-child(1) {
+  margin-left: -25%;
+}
+.line:nth-child(1)::after {
+  animation-delay: 2s;
+}
+
+.line:nth-child(3) {
+  margin-left: 25%;
+}
+.line:nth-child(3)::after {
+  animation-delay: 2.5s;
+}
+
+@keyframes drop {
   0% {
-    transform: scale(0) translateY(0) rotate(70deg);
-    opacity: 1;
+    top: -50%;
   }
   100% {
-    transform: scale(1.3) translateY(-100px) rotate(360deg);
-    opacity: 0;
+    top: 110%;
   }
 }
 
-/* MAIN CONTENT LAYER (above the bubbles) */
+/*--------------------------------------------------
+  Main Content & Component Styles
+--------------------------------------------------*/
+
+/* Ensure the content appears above the background */
 .content {
   position: relative;
   z-index: 1;
@@ -193,14 +147,14 @@ body {
   font-weight: 500;
 }
 
-.form-control, 
+.form-control,
 .form-select {
   background-color: var(--socket-bg);
   color: var(--socket-primary);
   border: 1px solid var(--socket-border);
 }
 
-.form-control:focus, 
+.form-control:focus,
 .form-select:focus {
   box-shadow: 0 0 5px var(--socket-secondary);
   border-color: var(--socket-secondary);
@@ -229,14 +183,14 @@ body {
   color: var(--socket-primary);
 }
 
-#result th, 
+#result th,
 #result td {
   text-align: center;
   vertical-align: middle;
   border-color: var(--socket-border);
 }
 
-/* Optionally override Bootstrap’s table header */
+/* Override Bootstrap table header if needed */
 .table-primary {
   background-color: var(--socket-bg) !important;
   color: var(--socket-primary) !important;
