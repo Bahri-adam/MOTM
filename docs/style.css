@@ -113,7 +113,7 @@ body {
   NAVIGATION HEADER STYLES
 --------------------------------------------------*/
 .main-header {
-  position: fixed;
+  position: static;
   top: 0;
   left: 0;
   width: 100%;
