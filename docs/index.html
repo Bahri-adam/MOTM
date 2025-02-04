@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Moving Box &amp; Packing Supplies Estimator | A2 Movers</title>
+  <title>Moving Box & Packing Supplies Estimator | A2 Movers</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -10,31 +11,31 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- FIXED, TRANSPARENT NAVIGATION HEADER -->
+  <!-- NAVIGATION HEADER -->
   <header class="main-header">
     <nav class="navbar">
-      <a href="https://www.a2movers.com/" class="nav-btn" title="Home">Home</a>
-      <a href="https://www.a2movers.com/contact-requestquote/" class="nav-btn" title="Get a Quote">Get a Quote</a>
-      <a href="https://www.yelp.com/biz/men-on-the-move-ann-arbor-3" class="nav-btn" target="_blank" title="Yelp">Yelp</a>
+      <a href="https://www.a2movers.com/" class="nav-btn">Home</a>
+      <a href="https://www.a2movers.com/contact-requestquote/" class="nav-btn">Get a Quote</a>
+      <a href="https://www.yelp.com/biz/men-on-the-move-ann-arbor-3" class="nav-btn" target="_blank">Yelp</a>
     </nav>
   </header>
   
-  <!-- LINES BACKGROUND ANIMATION -->
+  <!-- LINES BACKGROUND Animation -->
   <div class="lines">
     <div class="line"></div>
     <div class="line"></div>
     <div class="line"></div>
   </div>
   
-  <!-- MAIN CONTENT (PUSHED DOWN BELOW THE HEADER) -->
+  <!-- MAIN CONTENT (pushed down to avoid the fixed header) -->
   <div class="container my-5 content">
     <div class="card shadow">
       <div class="card-header">
-        <h1 class="card-title text-center mb-0">Moving Box &amp; Packing Supplies Estimator</h1>
+        <h1 class="card-title text-center mb-0">Moving Box & Packing Supplies Estimator</h1>
       </div>
       <div class="card-body">
         <form id="estimator-form">
-          <!-- Property Type Field -->
+          <!-- Your form fields go here -->
           <div class="mb-3">
             <label for="propertyType" class="form-label">Property Type</label>
             <select class="form-select" id="propertyType" name="propertyType">
@@ -45,7 +46,7 @@
           <!-- Apartment Fields -->
           <div id="apartment-fields" class="mb-3">
             <label for="bedroomsApartment" class="form-label">Number of Bedrooms (Apartment)</label>
-            <input type="number" class="form-control" id="bedroomsApartment" name="bedrooms" min="1" value="1" placeholder="e.g., 2">
+            <input type="number" class="form-control" id="bedroomsApartment" name="bedrooms" min="1" value="1">
           </div>
           <!-- House Fields -->
           <div id="house-fields" class="mb-3" style="display: none;">
@@ -55,15 +56,15 @@
             </div>
             <div class="mb-3">
               <label for="squareFootage" class="form-label">Square Footage (if known)</label>
-              <input type="number" class="form-control" id="squareFootage" name="squareFootage" min="0" placeholder="e.g., 1500">
+              <input type="number" class="form-control" id="squareFootage" name="squareFootage" min="0">
             </div>
             <div class="mb-3">
               <label for="bedroomsHouse" class="form-label">Number of Bedrooms (House)</label>
-              <input type="number" class="form-control" id="bedroomsHouse" name="bedrooms" min="1" value="1" placeholder="e.g., 3">
+              <input type="number" class="form-control" id="bedroomsHouse" name="bedrooms" min="1" value="1">
             </div>
             <div class="mb-3">
               <label for="yearsLived" class="form-label">Years Lived in Home</label>
-              <input type="number" class="form-control" id="yearsLived" name="yearsLived" min="0" value="0" placeholder="e.g., 5">
+              <input type="number" class="form-control" id="yearsLived" name="yearsLived" min="0" value="0">
             </div>
             <div class="mb-3">
               <label for="belongings" class="form-label">How would you describe your belongings?</label>
@@ -75,19 +76,18 @@
             </div>
           </div>
           
-          <!-- Additional Packing Supplies -->
           <h2 class="h5 mt-4">Additional Packing Supplies (Optional)</h2>
           <div class="mb-3">
             <label for="extraPictureBoxes" class="form-label">Picture Boxes (each $2)</label>
-            <input type="number" class="form-control" id="extraPictureBoxes" name="extraPictureBoxes" min="0" value="0" placeholder="0">
+            <input type="number" class="form-control" id="extraPictureBoxes" name="extraPictureBoxes" min="0" value="0">
           </div>
           <div class="mb-3">
             <label for="extraBubbleWrap" class="form-label">Bubble Wrap (feet, $2 per foot)</label>
-            <input type="number" class="form-control" id="extraBubbleWrap" name="extraBubbleWrap" min="0" value="0" placeholder="0">
+            <input type="number" class="form-control" id="extraBubbleWrap" name="extraBubbleWrap" min="0" value="0">
           </div>
           <div class="mb-3">
             <label for="extraMattressCovers" class="form-label">Mattress Covers (each $10)</label>
-            <input type="number" class="form-control" id="extraMattressCovers" name="extraMattressCovers" min="0" value="0" placeholder="0">
+            <input type="number" class="form-control" id="extraMattressCovers" name="extraMattressCovers" min="0" value="0">
           </div>
           <div class="d-grid">
             <button type="submit" class="btn btn-primary btn-lg">Estimate Moving Supplies</button>
@@ -96,11 +96,11 @@
       </div>
     </div>
     
-    <!-- ESTIMATION RESULT AREA -->
+    <!-- ESTIMATION RESULT -->
     <div id="result" class="mt-5"></div>
   </div>
   
-  <!-- FOOTER (Transparent so the animated lines show through) -->
+  <!-- FOOTER -->
   <footer class="footer py-4">
     <div class="container">
       <div class="row">
@@ -112,7 +112,7 @@
           </p>
         </div>
         <div class="col-md-6 mb-3">
-          <h5>CONTACT US:</h5>
+          <h5>CONTACT US</h5>
           <p>
             <strong>Email:</strong> no1mover@yahoo.com<br>
             <strong>Call:</strong> 734.913.9966<br>
@@ -122,27 +122,14 @@
         </div>
       </div>
       <div class="text-center mt-3">
-        &copy; 2025 A2 Movers. All Rights Reserved. Balaka Inc.
+        &copy; 2025 A2 Movers. All Rights Reserved.
       </div>
     </div>
   </footer>
   
   <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Inline Script for Form Interactivity -->
-  <script>
-    // Toggle extra fields based on property type
-    document.getElementById("propertyType").addEventListener("change", function() {
-      var apartmentFields = document.getElementById("apartment-fields");
-      var houseFields = document.getElementById("house-fields");
-      if (this.value === "house") {
-        apartmentFields.style.display = "none";
-        houseFields.style.display = "block";
-      } else {
-        houseFields.style.display = "none";
-        apartmentFields.style.display = "block";
-      }
-    });
-  </script>
+  <!-- Custom JS (Estimator logic) -->
+  <script src="app.js"></script>
 </body>
 </html>
