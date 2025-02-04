@@ -1,25 +1,38 @@
 /*--------------------------------------------------
-  CSS VARIABLES & BASE STYLES
+  CSS Variables & Base Styles
 --------------------------------------------------*/
 :root {
   --socket-font: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --socket-bg: #5b646b;             /* Grey for gradients & header backgrounds */
-  --socket-bg2: #454e57;            /* Dark grey (base for card) */
-  --socket-primary: #ffffff;        /* White text */
-  --socket-secondary: #efbb20;      /* Yellow/Gold accent */
+  --socket-bg: #5b646b;             /* Grey */
+  --socket-bg2: #454e57;
+  --socket-primary: #ffffff;
+  --socket-secondary: #efbb20;      /* Yellow/Gold */
+  --socket-color: #ffffff;
+  --socket-meta: #e1e1e1;
+  --socket-heading: #ffffff;
   --socket-border: #5b646b;
+  --socket-constant-font: #5b646b;
+  --socket-button-border: #dddddd;
+  --socket-button-border2: #cd9900;
+  --socket-iconlist: #4a535a;
+  --socket-timeline: #4a535a;
+  --socket-timeline-date: #172027;
+  --socket-masonry: #343d46;
+  --socket-stripe: #ffffff;
+  --socket-stripe2: #ffffff;
+  --socket-stripe2nd: #ffcc31;
+  --socket-button-font: #5b646b;
 }
 
 /* Reset */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 html, body {
   height: 100%;
-  min-height: 120vh; /* Increase page height */
 }
 
 /* Body styling */
@@ -33,30 +46,101 @@ body {
 }
 
 /*--------------------------------------------------
-  FIXED TRANSPARENT NAVIGATION HEADER
+  LINES BACKGROUND Animation
+--------------------------------------------------*/
+.lines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  margin: auto;
+  width: 100vw;
+  pointer-events: none;
+  z-index: -1;
+  /* Gradient from grey to yellow (using our variables) */
+  background: linear-gradient(180deg, var(--socket-bg) 0%, var(--socket-secondary) 100%);
+}
+
+.line {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.line::after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffe8b5 100%);
+  animation: drop 5s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+}
+
+.line:nth-child(1) {
+  margin-left: -25%;
+}
+.line:nth-child(1)::after {
+  animation-delay: 2s;
+}
+
+.line:nth-child(3) {
+  margin-left: 25%;
+}
+.line:nth-child(3)::after {
+  animation-delay: 2.5s;
+}
+
+@keyframes drop {
+  0% {
+    top: -50%;
+  }
+  100% {
+    top: 110%;
+  }
+}
+
+/*--------------------------------------------------
+  NAVIGATION HEADER STYLES
 --------------------------------------------------*/
 .main-header {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.7); /* Slight transparency for visibility */
-  padding: 0.5rem 0;
-  z-index: 1000;
+  width: 100%;
+  background-color: transparent;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .navbar {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0.5rem 1rem;
 }
 
+/* Updated nav-btn styling to remove default link styles and add button-like appearance */
 .nav-btn {
+  display: inline-block;
   margin: 0 1rem;
-  color: var(--socket-primary);
-  text-decoration: none;
-  font-size: 1.2rem;
+  padding: 0.75rem 1.5rem;
+  background-color:  transparent;
+  color: var(--socket-primary) !important;
+  text-decoration: none !important;  /* Remove the blue underline */
+  font-weight: bold;
+  border-radius: 4px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
 }
 
 .nav-btn:hover {
@@ -64,17 +148,111 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+
 /*--------------------------------------------------
-  FOOTER STYLES (Fully Transparent)
+  MAIN CONTENT & COMPONENT STYLES
 --------------------------------------------------*/
-.footer {
-  background: transparent !important;
-  color: var(--socket-primary) !important;
-  padding-top: 1rem;
+
+/* Ensure the content appears above the background and below the header */
+.content {
   position: relative;
-  z-index: 10;
+  z-index: 1;
+  margin-top: 70px; /* Space for fixed header */
 }
 
-.footer h5, .footer p, .footer a {
+.card {
+  background-color: var(--socket-bg2);
+  color: var(--socket-primary);
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: var(--socket-secondary);
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 1.75rem;
+  color: var(--socket-heading);
+}
+
+.form-label {
+  color: var(--socket-primary);
+  font-weight: 500;
+}
+
+.form-control,
+.form-select {
+  background-color: var(--socket-bg);
+  color: var(--socket-primary);
+  border: 1px solid var(--socket-border);
+}
+
+.form-control:focus,
+.form-select:focus {
+  box-shadow: 0 0 5px var(--socket-secondary);
+  border-color: var(--socket-secondary);
+}
+
+.btn-primary {
+  background-color: var(--socket-secondary);
+  border-color: var(--socket-button-border2);
+  color: var(--socket-primary);
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: var(--socket-secondary);
+  opacity: 0.9;
+}
+
+#result h2 {
+  color: var(--socket-primary);
+}
+
+#result table {
+  margin-top: 20px;
+  color: var(--socket-primary);
+}
+
+#result th,
+#result td {
+  text-align: center;
+  vertical-align: middle;
+  border-color: var(--socket-border);
+}
+
+/* Override Bootstrap table header if needed */
+.table-primary {
+  background-color: var(--socket-bg) !important;
   color: var(--socket-primary) !important;
+}
+
+/*--------------------------------------------------
+  FOOTER & CONTACT SECTION Styles
+--------------------------------------------------*/
+/* Set footer background to transparent so the animated lines show through */
+.footer {
+  background-color: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--socket-primary);
+  padding: 1.5rem 0;
+}
+
+/* Ensure all footer text is bold white */
+.footer h5,
+.footer p {
+  color: #ffffff !important;
+  font-weight: bold !important;
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 576px) {
+  .card-title {
+    font-size: 1.5rem;
+  }
 }
