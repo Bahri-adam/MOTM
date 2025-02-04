@@ -1,6 +1,6 @@
 // docs/app.js
 document.addEventListener('DOMContentLoaded', function() {
-  // Box information: cost and dimensions (sourced from our research)
+  // Box information: cost and dimensions
   const boxInfo = {
     book: { name: "Book Box", cost: 2.50, dimensions: "12¾ x 12¾ x 16.5" },
     medium: { name: "Medium Box", cost: 3.50, dimensions: "18 x 18 x 16" },
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('estimator-form');
   const resultDiv = document.getElementById('result');
   
-  // Toggle display of fields based on the selected property type
+  // Toggle display of fields based on property type
   propertyTypeSelect.addEventListener('change', function() {
     if (propertyTypeSelect.value === 'apartment') {
       apartmentFields.style.display = 'block';
@@ -30,9 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // Calculation for apartments:
-  // For a 1-bedroom apartment we assume:
-  // • 10 Book Boxes, 10 Medium Boxes, 5 Large Boxes, 3 Dish Pack Boxes, and 3 Rolls of Tape.
-  // For additional bedrooms, we use a scale factor: 1 + 0.5*(bedrooms-1)
   function calculateApartmentBoxes(bedrooms) {
     const scale = bedrooms > 1 ? 1 + (bedrooms - 1) * 0.5 : 1;
     return {
@@ -45,10 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   // Calculation for houses:
-  // We start with a base of 30 boxes for a 1-bedroom home and add 20 for each extra bedroom.
-  // If the occupants have lived in the home for more than 5 years, add 10% per extra year.
-  // Then distribute the total boxes using ratios (10/28 for book, 10/28 for medium, 5/28 for large, 3/28 for dish,
-  // with tape approximated as 3/28).
   function calculateHouseBoxes(bedrooms, yearsLived, belongingsFactor) {
     const baseBoxes = 30 + (bedrooms - 1) * 20;
     let yearFactor = 1;
@@ -71,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
   }
   
-  // Calculate total cost based on the quantities and the boxInfo prices.
+  // Calculate total cost based on the quantities and boxInfo prices.
   function calculateCosts(items) {
     let cost = 0;
     for (const key in items) {
@@ -124,13 +117,15 @@ document.addEventListener('DOMContentLoaded', function() {
     displayResult(items, totalCost);
   });
   
-  // Display the results in a detailed table showing each item's breakdown.
+  // Display the results in a detailed Bootstrap-styled table.
   function displayResult(items, totalCost) {
-    let html = '<h2>Estimation Result</h2>';
-    html += '<table>';
-    html += '<tr><th>Item</th><th>Quantity</th><th>Cost per Unit</th><th>Total Cost</th><th>Dimensions</th></tr>';
+    let html = '<h2 class="mb-3">Estimation Result</h2>';
+    html += '<div class="table-responsive">';
+    html += '<table class="table table-bordered table-striped">';
+    html += '<thead class="table-primary"><tr><th>Item</th><th>Quantity</th><th>Cost per Unit</th><th>Total Cost</th><th>Dimensions</th></tr></thead>';
+    html += '<tbody>';
     
-    // Order in which items appear in the table.
+    // Define the display order for items.
     const order = ['book', 'medium', 'large', 'dish', 'tape', 'picture', 'bubbleWrap', 'mattressCover'];
     
     order.forEach(key => {
@@ -147,8 +142,9 @@ document.addEventListener('DOMContentLoaded', function() {
                  </tr>`;
       }
     });
-    html += '</table>';
-    html += `<p><strong>Total Estimated Cost:</strong> $${totalCost.toFixed(2)}</p>`;
+    
+    html += '</tbody></table></div>';
+    html += `<p class="h5 mt-3"><strong>Total Estimated Cost:</strong> $${totalCost.toFixed(2)}</p>`;
     resultDiv.innerHTML = html;
   }
 });
