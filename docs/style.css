@@ -113,39 +113,32 @@ body {
   NAVIGATION HEADER STYLES
 --------------------------------------------------*/
 .main-header {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative; /* Normal flow so header scrolls with the page */
   width: 100%;
-  background-color: transparent; /* Transparent so lines show through */
+  background: transparent;
+  padding: 0.5rem 0;
   z-index: 10;
-  /* Optional: add a subtle shadow if desired */
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); */
 }
 
 .navbar {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem 1rem;
 }
 
 .nav-btn {
-  display: inline-block;
   margin: 0 1rem;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--socket-secondary) !important;
   color: var(--socket-primary) !important;
-  text-decoration: none !important;
-  font-weight: bold;
-  border-radius: 4px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: transparent;
   border: none;
+  text-decoration: none;
+  font-size: 1.5rem; /* Adjust for desired icon size */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .nav-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 /*--------------------------------------------------
@@ -155,104 +148,4 @@ body {
 .content {
   position: relative;
   z-index: 1;
-  margin-top: 70px; /* Space for fixed header */
-}
-
-.card {
-  background-color: var(--socket-bg2);
-  color: var(--socket-primary);
-  border: none;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.card-header {
-  background-color: var(--socket-secondary);
-  padding: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.card-title {
-  font-weight: bold;
-  font-size: 1.75rem;
-  color: var(--socket-heading);
-}
-
-.form-label {
-  color: var(--socket-primary);
-  font-weight: 500;
-}
-
-.form-control,
-.form-select {
-  background-color: var(--socket-bg);
-  color: var(--socket-primary);
-  border: 1px solid var(--socket-border);
-}
-
-.form-control:focus,
-.form-select:focus {
-  box-shadow: 0 0 5px var(--socket-secondary);
-  border-color: var(--socket-secondary);
-}
-
-.btn-primary {
-  background-color: var(--socket-secondary);
-  border-color: var(--socket-button-border2);
-  color: var(--socket-primary);
-  font-weight: bold;
-}
-
-.btn-primary:hover {
-  background-color: var(--socket-secondary);
-  opacity: 0.9;
-}
-
-#result h2 {
-  color: var(--socket-primary);
-}
-
-#result table {
-  margin-top: 20px;
-  color: var(--socket-primary);
-}
-
-#result th,
-#result td {
-  text-align: center;
-  vertical-align: middle;
-  border-color: var(--socket-border);
-}
-
-/* Override Bootstrap table header if needed */
-.table-primary {
-  background-color: var(--socket-bg) !important;
-  color: var(--socket-primary) !important;
-}
-
-/*--------------------------------------------------
-  FOOTER & CONTACT SECTION Styles
---------------------------------------------------*/
-.footer {
-  background-color: transparent; /* Transparent so the animated lines show through */
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  color: var(--socket-primary);
-  padding: 1.5rem 0;
-}
-
-.footer h5 {
-  font-weight: bold;
-  color: var(--socket-primary);
-}
-
-.footer p {
-  color: var(--socket-primary);
-  font-weight: bold;
-}
-
-/* RESPONSIVE ADJUSTMENTS */
-@media (max-width: 576px) {
-  .card-title {
-    font-size: 1.5rem;
-  }
-}
+  margin-top: 70px; /* Space
