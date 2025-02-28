@@ -70,13 +70,42 @@ document.addEventListener('DOMContentLoaded', function() {
   const resultDiv = document.getElementById('result');
   
   // Initialize the modal
-  const modalElement = document.getElementById('boxInfoModal');
-  const boxInfoModal = new bootstrap.Modal(modalElement);
+  let boxInfoModal;
+  
+  // Wait for Bootstrap to be loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    const modalElement = document.getElementById('boxInfoModal');
+    if (modalElement) {
+      boxInfoModal = new bootstrap.Modal(modalElement, {
+        keyboard: true,
+        backdrop: true
+      });
+      
+      // Add event listener for modal close button
+      modalElement.querySelector('.btn-close').addEventListener('click', function() {
+        boxInfoModal.hide();
+      });
+      
+      // Add event listener for clicking outside modal
+      modalElement.addEventListener('click', function(e) {
+        if (e.target === modalElement) {
+          boxInfoModal.hide();
+        }
+      });
+      
+      // Add event listener for ESC key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modalElement.classList.contains('show')) {
+          boxInfoModal.hide();
+        }
+      });
+    }
+  });
   
   // Function to show box information in modal
   function showBoxInfo(boxType) {
     const box = boxInfo[boxType];
-    if (box.description) {
+    if (box.description && boxInfoModal) {
       const modalTitle = document.getElementById('boxInfoModalLabel');
       const boxDescription = document.getElementById('boxDescription');
       
