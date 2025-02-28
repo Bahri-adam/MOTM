@@ -68,44 +68,15 @@ document.addEventListener('DOMContentLoaded', function() {
   const houseFields = document.getElementById('house-fields');
   const form = document.getElementById('estimator-form');
   const resultDiv = document.getElementById('result');
+  const modalElement = document.getElementById('boxInfoModal');
   
   // Initialize the modal
-  let boxInfoModal;
-  
-  // Wait for Bootstrap to be loaded
-  document.addEventListener('DOMContentLoaded', function() {
-    const modalElement = document.getElementById('boxInfoModal');
-    if (modalElement) {
-      boxInfoModal = new bootstrap.Modal(modalElement, {
-        keyboard: true,
-        backdrop: true
-      });
-      
-      // Add event listener for modal close button
-      modalElement.querySelector('.btn-close').addEventListener('click', function() {
-        boxInfoModal.hide();
-      });
-      
-      // Add event listener for clicking outside modal
-      modalElement.addEventListener('click', function(e) {
-        if (e.target === modalElement) {
-          boxInfoModal.hide();
-        }
-      });
-      
-      // Add event listener for ESC key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modalElement.classList.contains('show')) {
-          boxInfoModal.hide();
-        }
-      });
-    }
-  });
+  const boxInfoModal = new bootstrap.Modal(modalElement);
   
   // Function to show box information in modal
   function showBoxInfo(boxType) {
     const box = boxInfo[boxType];
-    if (box.description && boxInfoModal) {
+    if (box.description) {
       const modalTitle = document.getElementById('boxInfoModalLabel');
       const boxDescription = document.getElementById('boxDescription');
       
@@ -119,6 +90,15 @@ document.addEventListener('DOMContentLoaded', function() {
       boxInfoModal.show();
     }
   }
+
+  // Add event listener for clicking box info links
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.box-info-link')) {
+      e.preventDefault();
+      const boxType = e.target.closest('.box-info-link').dataset.boxType;
+      showBoxInfo(boxType);
+    }
+  });
   
   // Toggle display of fields based on property type
   propertyTypeSelect.addEventListener('change', function() {
@@ -300,14 +280,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update grand total
         const newTotalCost = calculateCosts(items);
         document.getElementById('total-cost').textContent = `$${newTotalCost.toFixed(2)}`;
-      });
-    });
-
-    // Add event listeners to box info links
-    document.querySelectorAll('.box-info-link').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        showBoxInfo(this.dataset.boxType);
       });
     });
   }
